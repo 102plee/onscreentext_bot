@@ -6,7 +6,7 @@ var nowWatching;
 
 
 // Create a Client instance with our bot token.
-const bot = new eris.Client('NzA1MzE0MjUyODQ3ODQxMzQw.Xqp6gA.v6rp2yEiTg8Xw32zU-gmDoSGlJg');
+const bot = new eris.Client('Your Token goes Here');
 
 // When the bot is connected and ready, log to console.
 bot.on('ready', () => {
@@ -21,25 +21,48 @@ bot.on('ready', () => {
 bot.on('messageCreate', async (msg) => {
 
   const newMessage = msg.content;
+  var thischannel;
 
-  if (nowWatching == true) {
-    fs.appendFile('displayApplication/newLog.txt', '\n' + newMessage, function (err) {
-      if (err) throw err;
-      console.log('Saved.');
-    });
+  // Start watching specified channel
+  if (newMessage == "/./watch this channel") {
+    thischannel = msg.channel_id;
   }
 
-  if (nowWatching != true && newMessage == "/./start logging") {
-    nowWatching = true;
+
+  if (msg.channel_id == thischannel) {
+
+    // Three possible cases:
+    // If nowWatching is true, log every new message.
+    // If nowWatching is true and the command "/./stop logging" is sent,
+    // stop logging.
+    // If nowWatching is false, and the command "/./start logging" is sent,
+    // start logging.
+
+    if (nowWatching == true) {
+
+
+      if (newMessage )
+      fs.appendFile('displayApplication/newLog.txt', '\n' + newMessage, function (err) {
+        if (err) throw err;
+        console.log('Saved.');
+      });
+
+      if (newMessage == "/./stop logging") {
+        nowWatching = false;
+        fs.unlink('displayApplication/src/newLog.txt', function (err) {
+        if (err) throw err;
+        console.log('File deleted!');
+      }
+
+    }
+
+    if (nowWatching != true && newMessage == "/./start logging") {
+      console.log('now watching');
+      nowWatching = true;
+    }
+
   }
 
-  if (nowWatching == true && newMessage == "/./stop logging") {
-    nowWatching = false;
-    fs.unlink('displayApplication/src/newLog.txt', function (err) {
-    if (err) throw err;
-    console.log('File deleted!');
-  });
-  }
 
 
 });

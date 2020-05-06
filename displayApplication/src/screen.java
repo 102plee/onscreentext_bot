@@ -6,17 +6,33 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.File;
+import java.util.Timer;
 
 public class screen extends JFrame {
 
     private File file = new File("newLog.txt");
     private long currentFileSize = file.length();
+
+    InputStream input;
+    BufferedReader reader;
     JPanel panel;
+    String line;
+
+
     public screen() {
+
+        // Screen constructor. All self-explanatory.
+
         super("GradientTranslucentWindow");
 
+        try {
+            input = new FileInputStream("newLog.txt");
+            reader = new BufferedReader(new InputStreamReader(input));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         setBackground(new Color(0,0,0,0));
-        setSize(new Dimension(300,200));
         setTitle("bruh moment 10");
         setSize (380,650);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -41,28 +57,16 @@ public class screen extends JFrame {
             }
         };
         setContentPane(panel);
-        setLayout(new GridBagLayout());
+        setLayout(new FlowLayout());
         setUndecorated (true);
         setVisible (true);
-    }
 
-    private void getText() {
-        try {
-            InputStream input = new FileInputStream("newLog.txt");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-            String line = "";
-            while (true) {
-//                System.out.println(file.length());
-                if (file.length() != currentFileSize) {
-                    panel.add(new JButton("I am a Button"));
-                    line = reader.readLine();
-                    currentFileSize = file.length();
-                }
+        // Starts a timer task that checks the log file every 1 second. This task also
+        // takes care of updating the screen with the new text.
 
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        Timer timer = new Timer();
+        timer.schedule(new getText(this, this.reader, this.file, this.currentFileSize), 0, 1000);
+
     }
 
     public static void main(String[] args) {
@@ -91,6 +95,7 @@ public class screen extends JFrame {
                         screen();
 
                 // Display the window.
+
                 gtw.setVisible(true);
             }
         });
