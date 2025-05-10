@@ -1,13 +1,14 @@
-# onscreentext_bot
+# screen-text-scroller
 
-A java and nodejs application that checks discord messages, then scrolls the messages across your RootFrame.
-Made to be used for streaming purposes, or just for general fun.
+A Java + Node.js application that reads messages from Discord and scrolls them across your screen.
+This is intended for stream overlays or just for fun!
 
-## Instructions/Installlation
+![demo.gif](images/demo.gif)
 
-Ease of use for the public is still under work.
+## Getting started
 
-## Screenshots
-
-<img src="https://cdn.discordapp.com/attachments/707536506579058781/707537002765090920/unknown.png" title="RootFrame Menu">
+1. Download the [latest release](https://github.com/joeyshi12/screen-text-scroller/releases).
+2. Input your Discord bot token in `web/.env`.
+3. In the `web` folder, run `npm install` and then `npm run dev`.
+4. In a separate terminal, run `java -jar screen-text-scroller.jar`.
 
