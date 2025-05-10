@@ -11,5 +11,6 @@ This is intended for stream overlays or just for fun!
 2. Unzip the archive in a new folder.
 3. Input your Discord bot token in `bot/.env`.
 4. In the `bot` folder, run `npm install` and then `npm run dev`.
-5. In a separate terminal, run `java -jar screen-text-scroller.jar`.
-
+5. Start the text scroller GUI by double clicking `screen-text-scroller.jar`.
+6. Inside any Discord channel including your Discord bot, enter `/./start logging`.
+7. The following messages will appear on your screen.
