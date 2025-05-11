@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="screen-text-scroller:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/screen_text_scroller_jar</output-path>
+    <root id="archive" name="screen-text-scroller.jar">
+      <element id="module-output" name="screen-text-scroller" />
+    </root>
+  </artifact>
+</component>
